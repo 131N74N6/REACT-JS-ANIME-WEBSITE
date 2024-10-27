@@ -1,0 +1,41 @@
+.characters-info {
+    padding: 1.3rem;
+}
+
+.characters-info .character {
+    display: flex;
+    overflow-x: auto;
+    padding: 1.3rem;
+    gap: 1rem;
+}
+
+.characters-info .character::-webkit-scrollbar {
+    background-color: transparent;
+    width: 10px;
+}
+
+.characters-info .character::-webkit-scrollbar-thumb {
+    background-color: aqua;
+}
+
+.characters-info .character .character-data {
+    width: 200px;
+    height: 320px;
+    padding: 1rem;
+    border: 1px solid aqua;
+}
+
+.characters-info .character .character-data .role-name {
+    padding: 0.9rem;
+}
+
+.characters-info .character .character-data .img-chara-wrap {
+    width: 200px;
+    height: 230px;
+}
+
+.characters-info .character .character-data .img-chara-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

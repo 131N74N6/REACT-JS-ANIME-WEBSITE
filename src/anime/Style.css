@@ -1,0 +1,22 @@
+.data-wrap {
+    background-color: rgb(50, 50, 50);
+    color: aqua;
+}
+
+.data-wrap .data-content {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    min-height: 100dvh;
+}
+
+.data-wrap .title {
+    text-align: center;
+    font-size: 1rem;
+    font-family: Arial;
+    font-weight: bold;
+    padding: 1rem;
+}

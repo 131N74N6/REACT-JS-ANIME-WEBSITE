@@ -1,0 +1,23 @@
+.load-logo {
+    background-color: rgb(50, 50, 50);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100dvh;
+    color: aqua;
+    font-size: 1.8rem;
+    font-family: Arial;
+}
+
+.load-logo .fa-rotate {
+    animation: logo-spin infinite 2s linear;
+}
+
+@keyframes logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

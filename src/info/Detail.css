@@ -1,0 +1,101 @@
+.detail-info-wrap {
+    background-color: rgb(50, 50, 50);
+    min-height: 100dvh;
+    color: aqua;
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100dvh;
+}
+
+.detail-info {
+    font-size: 1.2rem;
+    font-family: Arial;
+    padding: 1rem;
+}
+
+.detail-info .title {
+    font-weight: bold;
+    font-size: 1.6rem;
+    text-align: center;
+}
+
+.detail-info .genre-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1.2rem;
+    justify-content: center;
+}
+
+.detail-info .genre-info .genre-anime, .detail-info .genre-info .theme-anime {
+    font-size: 1rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    background-color: aqua;
+    color: black;
+    font-weight: bold;
+}
+
+.media-prom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.anime-info .poster-wrap {
+    width: 300px;
+    height: 430px;
+}
+
+.anime-info .poster-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.more-inform {
+    padding: 1rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.more-inform div {
+    border: 1px solid aqua;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1rem;
+}
+
+.studio-names {
+    display: flex;
+    gap: 0.89rem;
+}
+
+.studio-names .studio-group .studio {
+    background-color: aqua;
+    padding: 0.2rem;
+    color: black;
+}
+
+.more-inform-2 {
+    display: flex;
+    gap: 1.8rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+@media (max-width:398px) {
+    .detail-info {
+        font-size: 1rem;
+    }
+}

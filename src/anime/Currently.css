@@ -1,0 +1,46 @@
+.airing-data {
+    background-color: rgb(50, 50, 50);
+    color: aqua;
+}
+
+.airing-data .day-navbar {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.airing-data .day-navbar button {
+    background-color: transparent;
+    color: white;
+    font-size: 1rem;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.airing-data .day-navbar button.active {
+    color: aqua;
+}
+
+.airing-data .day-navbar button:hover {
+    color: aqua;
+}
+
+.airing-data .airing-anime {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding: 0 0 1rem 0;
+}
+
+@media (max-width:620px) {
+    .airing-data .day-navbar {
+        justify-content: start;
+        display: flex;
+        overflow-x: auto;
+        gap: 1rem;
+        padding: 1rem;
+    }
+}
