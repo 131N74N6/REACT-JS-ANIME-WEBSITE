@@ -1,25 +1,26 @@
-import React, { Fragment } from "react";
-import Header from "../component/Header";
+import { Fragment } from "react";
+import Header from "../Components/Header";
+import AnimeCard from "../Components/Card";
 import { useLocation } from "react-router-dom";
+import Loading from "../Utilities/Loading";
+import { useQuery } from "@tanstack/react-query";
 import "./Search.css";
-import AnimeCard from "../component/Card";
-import { useQuery } from "react-query";
-import Loading from "../component/Loading";
 
 export default function SearchPage() {
-
     const location = useLocation();
     const queryParam = new URLSearchParams(location.search);
     const searchKeyword = queryParam.get("q");
 
-    const { data, isLoading, error } = useQuery(['searched-anime', searchKeyword], async () => {
-        const request = await fetch(`https://api.jikan.moe/v4/anime?q=${searchKeyword}&sfw`);
-        const response = await request.json();
-        return response;
-    },{
-        staleTime: 5000,
-        cacheTime: 10000
-    })
+    const { data, isLoading, error } = useQuery({
+        queryKey: ['searched-anime', searchKeyword], 
+        queryFn: async () => {
+            const request = await fetch(`https://api.jikan.moe/v4/anime?q=${searchKeyword}&sfw`);
+            const response = await request.json();
+            return response;
+        },
+        staleTime: 1000 * 3,
+        cacheTime: 1000 * 30 * 60
+    });
     
     if (isLoading) {
         return <Loading text={'Please Wait'}/>;
@@ -27,7 +28,7 @@ export default function SearchPage() {
 
     if (error) {
         if (error.name === "TypeError" && error.message === "Failed to fetch") {
-            error.message = "Opps.. there's something wrong";
+            error.message = "Check your internet connection";
         }
         return <div className="error-msg-1">{error.message}</div>
     }

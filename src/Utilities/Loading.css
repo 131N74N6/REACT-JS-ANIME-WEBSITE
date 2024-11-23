@@ -10,7 +10,7 @@
 }
 
 .load-logo .fa-rotate {
-    animation: logo-spin infinite 2s linear;
+    animation: logo-spin 0.5s infinite linear;
 }
 
 @keyframes logo-spin {

@@ -1,11 +1,11 @@
-import POPULAR_ANIME from "./anime/Popular-Anime";
-import UPCOMING_ANIME from "./anime/Upcoming";
-import SearchPage from "./search-page/Search";
-import DetailInfo from "./info/Detail";
-import CurrentlyAiring from "./anime/Currently";
-import "./main.css";
+import POPULAR_ANIME from "./Pages/Popular-Anime";
+import UPCOMING_ANIME from "./Pages/Upcoming";
+import SearchPage from "./Pages/Search";
+import DetailInfo from "./Pages/Detail";
+import CurrentlyAiring from "./Pages/Currently";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import "./main.css";
 
 const queryClient = new QueryClient();
 

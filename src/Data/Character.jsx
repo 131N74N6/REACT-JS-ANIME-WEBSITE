@@ -1,14 +1,19 @@
-import React, { Fragment } from "react";
+import { Fragment } from "react";
+import { useQuery } from "@tanstack/react-query";
 import "./Character.css";
-import { useQuery } from "react-query";
 
 export default function Character({animeId}) {
 
-    const { data } = useQuery('character-anime', async () => {
-        const request = await fetch(`https://api.jikan.moe/v4/anime/${animeId}/characters`);
-        const response = await request.json();
-        return response;
-    })
+    const { data } = useQuery({
+        queryKey: ["character-anime", animeId], 
+        queryFn: async () => {
+            const request = await fetch(`https://api.jikan.moe/v4/anime/${animeId}/characters`);
+            const response = await request.json();
+            return response;
+        },
+        staleTime: 1000 * 3,
+        cacheTime: 1000 * 60 * 30
+    });
 
     return (
         <Fragment>

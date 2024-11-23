@@ -1,23 +1,27 @@
-import React, { Fragment } from "react";
-import "./Detail.css";
-import Header from "../component/Header";
-import { useParams } from "react-router-dom";
-import Footer from "../component/Footer";
-import Character from "./Character";
+import { Fragment } from "react";
 import YouTube from "react-youtube";
-import Soundtracks from "./Themes";
-import { useQuery } from "react-query";
-import Loading from "../component/Loading";
+import { useParams } from "react-router-dom";
+import Header from "../Components/Header";
+import Footer from "../Components/Footer";
+import Character from "../Data/Character";
+import Soundtracks from "../Data/Themes";
+import Loading from "../Utilities/Loading";
+import { useQuery } from "@tanstack/react-query";
+import "./Detail.css";
 
 export default function DetailInfo() {
-    
     const { mal_id } = useParams();
 
-    const { data, isLoading, error } = useQuery('detail-info', async () => {
-        const request = await fetch(`https://api.jikan.moe/v4/anime/${mal_id}`);
-        const response = await request.json();
-        return response;
-    })
+    const { data, isLoading, error } = useQuery({
+        queryKey: ["detail-info", mal_id], 
+        queryFn: async () => {
+            const request = await fetch(`https://api.jikan.moe/v4/anime/${mal_id}`);
+            const response = await request.json();
+            return response;
+        },
+        staleTime: 1000 * 3,
+        cacheTime: 1000 * 60 * 30
+    });
     
     if (isLoading) {
         return <Loading text={'Getting Information'}/>;
@@ -25,7 +29,7 @@ export default function DetailInfo() {
 
     if (error) {
         if (error.name === "TypeError" && error.message === "Failed to fetch") {
-            error.message = "Opps.. there's something wrong";
+            error.message = "Check your internet connection";
         }
         return <div className="error-msg-1">{error.message}</div>
     }

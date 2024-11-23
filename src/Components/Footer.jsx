@@ -7,7 +7,8 @@ export default function Footer() {
     return (
         <Fragment>
             <footer>
-                <div>&copy;{year.getFullYear()} 131N74N6</div>
+                <div>&copy;{year.getFullYear()} W3BANIMEL1ST</div>
+                <div>powered by jikan</div>
             </footer>
         </Fragment>
     )

@@ -1,13 +1,18 @@
-import React, { Fragment } from "react";
-import { useQuery } from "react-query";
+import { Fragment } from "react";
+import { useQuery } from "@tanstack/react-query";
 
 export default function Soundtracks({animeId}) {
 
-    const { data } = useQuery('anime-soundtracks', async () => {
-        const request = await fetch(`https://api.jikan.moe/v4/anime/${animeId}/themes`);
-        const response = await request.json();
-        return response;
-    })
+    const { data } = useQuery({
+        queryKey: ["anime-soundtracks", animeId], 
+        queryFn: async () => {
+            const request = await fetch(`https://api.jikan.moe/v4/anime/${animeId}/themes`);
+            const response = await request.json();
+            return response;
+        },
+        staleTime: 1000 * 3,
+        cacheTime: 1000 * 60 * 30
+    });
 
     return (
         <Fragment>

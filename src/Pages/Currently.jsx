@@ -1,27 +1,28 @@
-import React, { Fragment, useState } from 'react';
-import { useQuery } from 'react-query';
-import Header from '../component/Header';
-import AnimeCard from '../component/Card';
+import { Fragment, useState } from "react";
+import Header from "../Components/Header";
+import AnimeCard from "../Components/Card";
+import Loading from "../Utilities/Loading";
+import { useQuery } from "@tanstack/react-query";
 import "./Currently.css";
-import Loading from '../component/Loading';
 
 export default function CurrentlyAiring() {
-
-    const days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+    const days = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
     const [chosenDay, setChosenDay] = useState("sunday");
 
-    const { data, isLoading, error } = useQuery(['airing', chosenDay], async () => {
-        const request = await fetch(`https://api.jikan.moe/v4/schedules/${chosenDay}`);
-        const response = await request.json();
-        return response;
-    },{
-        staleTime: 60000,
-        cacheTime: 300000
-    })
+    const { data, isLoading, error } = useQuery({
+        queryKey: ["airing", chosenDay], 
+        queryFn: async () => {
+            const request = await fetch(`https://api.jikan.moe/v4/schedules/${chosenDay}`);
+            const response = await request.json();
+            return response;
+        },
+        staleTime: 1000,
+        cacheTime: 1000 * 30 * 60
+    });
 
     if (error) {
         if (error.name === "TypeError" && error.message === "Failed to fetch") {
-            error.message = "Opps.. there's something wrong";
+            error.message = "Check your internet connection";
         }
         return <div className="error-msg-1">{error.message}</div>
     }
@@ -33,7 +34,7 @@ export default function CurrentlyAiring() {
     return (
         <Fragment>
             <Header/>
-            {isLoading && <Loading text={'Please Wait'}/>}
+            {isLoading && <Loading text={"Please Wait"}/>}
             <div className="airing-data">
                 <div className="day-navbar">
                     {days.map((day, index) => (
